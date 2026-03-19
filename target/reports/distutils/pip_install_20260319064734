@@ -1,0 +1,17 @@
+
+[notice] A new release of pip is available: 23.1.2 -> 26.0.1
+[notice] To update, run: python.exe -m pip install --upgrade pip
+tarted
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Building wheels for collected packages: snake_game
+  Building wheel for snake_game (pyproject.toml): started
+  Building wheel for snake_game (pyproject.toml): finished with status 'done'
+  Created wheel for snake_game: filename=snake_game-1.0-py3-none-any.whl size=2416 sha256=f1cc01b0311ca7e3ebeeec2c5b001fe6a0c8dfeeae1a8e31a9e0c4643e46d393
+  Stored in directory: c:\users\user\appdata\local\pip\cache\wheels\0c\45\10\b7feed32111dee67b3840609acc9a63993bfcaa4b4e56ecc98
+Successfully built snake_game
+Installing collected packages: snake_game
+Successfully installed snake_game-1.0

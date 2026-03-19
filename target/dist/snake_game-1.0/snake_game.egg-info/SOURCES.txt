@@ -1,0 +1,8 @@
+setup.py
+snake_game.py
+snake_game.egg-info/PKG-INFO
+snake_game.egg-info/SOURCES.txt
+snake_game.egg-info/dependency_links.txt
+snake_game.egg-info/namespace_packages.txt
+snake_game.egg-info/top_level.txt
+snake_game.egg-info/zip-safe
