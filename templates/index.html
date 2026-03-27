@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Snake Game</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<h2>Snake Game 🐍</h2>
+
+<p id="score">Score: 0</p>
+
+<button onclick="startGame()">Start / Replay</button>
+<button onclick="quitGame()">Quit</button>
+
+<br><br>
+
+<canvas id="gameCanvas" width="400" height="400"></canvas>
+
+<script>
+const canvas = document.getElementById("gameCanvas");
+const ctx = canvas.getContext("2d");
+
+let snake, direction, food, score, gameInterval;
+
+function initGame() {
+    snake = [{x: 10, y: 10}];
+    direction = "RIGHT";
+    food = {x: 5, y: 5};
+    score = 0;
+}
+
+document.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowUp") direction = "UP";
+    if (e.key === "ArrowDown") direction = "DOWN";
+    if (e.key === "ArrowLeft") direction = "LEFT";
+    if (e.key === "ArrowRight") direction = "RIGHT";
+});
+
+function draw() {
+    ctx.clearRect(0, 0, 400, 400);
+
+    // snake
+    ctx.fillStyle = "green";
+    snake.forEach(part => {
+        ctx.fillRect(part.x * 20, part.y * 20, 20, 20);
+    });
+
+    // food
+    ctx.fillStyle = "red";
+    ctx.fillRect(food.x * 20, food.y * 20, 20, 20);
+
+    document.getElementById("score").innerText = "Score: " + score;
+}
+
+function move() {
+    let head = {...snake[0]};
+
+    if (direction === "UP") head.y--;
+    if (direction === "DOWN") head.y++;
+    if (direction === "LEFT") head.x--;
+    if (direction === "RIGHT") head.x++;
+
+    // collision
+    if (
+        head.x < 0 || head.y < 0 ||
+        head.x >= 20 || head.y >= 20 ||
+        snake.some(p => p.x === head.x && p.y === head.y)
+    ) {
+        clearInterval(gameInterval);
+        alert("Game Over! Score: " + score);
+        return;
+    }
+
+    snake.unshift(head);
+
+    // food
+    if (head.x === food.x && head.y === food.y) {
+        score++;
+        food = {
+            x: Math.floor(Math.random() * 20),
+            y: Math.floor(Math.random() * 20)
+        };
+    } else {
+        snake.pop();
+    }
+
+    draw();
+}
+
+function startGame() {
+    clearInterval(gameInterval);
+    initGame();
+    gameInterval = setInterval(move, 100); // faster & smooth
+}
+
+function quitGame() {
+    clearInterval(gameInterval);
+    alert("Game Stopped");
+}
+</script>
+
+</body>
+</html>
